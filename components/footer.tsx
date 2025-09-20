@@ -30,7 +30,7 @@ export function Footer() {
           <Separator className="w-full max-w-xs" />
 
           <div className="text-center space-y-2">
-            <p className="text-sm text-muted-foreground">© {currentYear} John Doe. All rights reserved.</p>
+            <p className="text-sm text-muted-foreground">© {currentYear} Onyon Cutter. All rights reserved.</p>
             <p className="text-xs text-muted-foreground flex items-center justify-center">
               Made with <Heart className="h-3 w-3 mx-1 text-red-500" /> using Next.js & Tailwind CSS
             </p>

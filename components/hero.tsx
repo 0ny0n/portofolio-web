@@ -24,7 +24,7 @@ export function Hero() {
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 bg-background relative overflow-hidden">
       {/* Interactive background */}
-      <InteractiveBackground mode="rain" followCursor={true} starColor="#ffffff" />
+      <InteractiveBackground mode="rain" followCursor={true} />
 
       <div className="container mx-auto max-w-7xl text-center relative z-10">
         <motion.div

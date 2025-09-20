@@ -48,6 +48,7 @@ export function Header() {
 
           <nav className="hidden md:flex space-x-8">
             {["About", "Skills", "Projects"].map((item, index) => ( // , "Experience", "Contact"
+            
               <button
                 key={item}
                 onClick={() => scrollToSection(item.toLowerCase())}
@@ -73,7 +74,7 @@ export function Header() {
         {isMenuOpen && (
           <nav className="md:hidden py-4 border-t border-border animate-fade-in-up">
             <div className="flex flex-col space-y-2">
-              {["About", "Skills", "Projects", "Experience", "Contact"].map((item, index) => (
+              {["About", "Skills", "Projects"].map((item, index) => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}

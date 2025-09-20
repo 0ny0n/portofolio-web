@@ -18,6 +18,14 @@ export function Skills() {
     { name: "Node.js", icon: "mdi:nodejs", color: "#339933" },
   ]
 
+  const tools = [
+    { name: "Figma", icon: "/figma-logo.svg", type: "svg"},
+    { name: "Visual Code Studio", icon: "mdi:microsoft-visual-studio-code"},
+    { name: "Axure RP 9", icon: "/axure-rp9.svg", type: "svg"},
+    { name: "GameMaker", icon: "/gamemaker-logo.svg", type: "svg", color: "#ffffff"},
+    { name: "Cursor AI", icon: "/cursor-ai.svg", type: "svg"}
+  ]
+
   const createInfiniteArray = (arr: any[], multiplier = 8) => {
     return Array(multiplier).fill(arr).flat()
   }
@@ -41,7 +49,7 @@ export function Skills() {
           </p>
         </motion.div>
 
-        {/* Card */}
+        {/* Technologies Card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +59,7 @@ export function Skills() {
         >
           <Card className="hover-lift max-w-4xl mx-auto">
             <CardHeader>
-              <CardTitle className="text-center">Technologies & Tools</CardTitle>
+              <CardTitle className="text-center">Technologies</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-4 justify-center">
@@ -74,6 +82,61 @@ export function Skills() {
                         style={{ color: tech.color }}
                       />
                       <span className="text-base font-medium">{tech.name}</span>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/*Tools Card*/}
+         <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <Card className="hover-lift max-w-4xl mx-auto">
+            <CardHeader>
+              <CardTitle className="text-center">Tools</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-wrap gap-4 justify-center">
+                {tools.map((tool, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4, delay: index * 0.05 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    {/* Custom wrapper instead of Badge */}
+                    <div className="flex items-center gap-3 px-4 py-3 
+                                    border border-gray-300 rounded-lg 
+                                    bg-secondary shadow-sm">
+                      {tool.type === "img" ? (
+                        <img
+                          src={tool.icon}
+                          alt={`${tool.name} logo`}
+                          className="w-7 h-7 object-contain"
+                        />
+                      ) : tool.type === "svg" ? (
+                        <img
+                          src={tool.icon}
+                          alt={`${tool.name} logo`}
+                          className="w-7 h-7 object-contain"
+                        />
+                      ) : (
+                        <Icon
+                          icon={tool.icon}
+                          className="w-7 h-7"
+                          style={{ color: "#9ca4fbff" }} // Default color; adjust as needed
+                        />
+                      )}
+                      <span className="text-base font-medium">{tool.name}</span>
                     </div>
                   </motion.div>
                 ))}

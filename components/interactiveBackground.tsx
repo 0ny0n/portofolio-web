@@ -1,3 +1,4 @@
+// components/InteractiveBackground.tsx
 "use client"
 
 import React, { useEffect, useRef } from "react"
@@ -72,15 +73,13 @@ export default function InteractiveBackground({
           })
         } else if (mode === "rain") {
           drops.length = 0
-          const dropCount = Math.floor((width * height) / 2000) // Increased density
+          const dropCount = Math.floor((width * height) / 4000)
           for (let i = 0; i < dropCount; i++) {
             drops.push({
               x: Math.random() * width,
               y: Math.random() * (height + 50) - 50,
-              length: 10 + Math.random() * 20, // Longer, varied raindrops
-              speed: 400 + Math.random() * 300, // Wider speed range
-              opacity: 0.3 + Math.random() * 0.5, // Varying opacity
-              sway: Math.random() * 0.02 - 0.01, // Random lateral sway
+              length: 5 + Math.random() * 15,
+              speed: 300 + Math.random() * 200,
             })
           }
         }
@@ -175,8 +174,6 @@ export default function InteractiveBackground({
         y: number
         length: number
         speed: number
-        opacity: number
-        sway: number
       }
 
       function drawRain(t: number) {
@@ -187,11 +184,10 @@ export default function InteractiveBackground({
 
           const cx = width / 2
           const angle = followCursor ? (mouse.x - cx) / (width / 2) * (Math.PI / 12) : 0
-          const vaporizeRadius = 50 // Radius around cursor where drops vaporize
 
           for (const d of drops) {
             const vy = d.speed * dt_sec
-            const vx = vy * Math.tan(angle) + d.sway * d.speed * dt_sec // Add sway
+            const vx = vy * Math.tan(angle)
 
             d.x += vx
             d.y += vy
@@ -199,31 +195,18 @@ export default function InteractiveBackground({
             d.x = ((d.x % width) + width) % width
             if (d.y > height + d.length) {
               d.y -= height + d.length * 2
-              d.opacity = 0.3 + Math.random() * 0.5 // Reset opacity on respawn
             }
 
-            // Calculate distance to cursor
-            const dx = d.x - mouse.x
-            const dy = d.y - mouse.y
-            const distance = Math.sqrt(dx * dx + dy * dy)
-            let drawOpacity = d.opacity
-            if (followCursor && distance < vaporizeRadius) {
-              drawOpacity *= (distance / vaporizeRadius) // Fade out near cursor
-              if (distance < vaporizeRadius * 0.2) {
-                drawOpacity = 0 // Completely invisible very close to cursor
-              }
-            }
-
-            const total_speed = Math.sqrt(vx * vx + vy * vy) / dt_sec || 1
-            const ux = (vx / dt_sec) / total_speed
-            const uy = (vy / dt_sec) / total_speed
+            const total_speed = Math.sqrt(vx * vx + vy * vy) / dt_sec
+            const ux = total_speed ? (vx / dt_sec) / total_speed : 0
+            const uy = total_speed ? (vy / dt_sec) / total_speed : 1
 
             const tailX = d.x - ux * d.length
             const tailY = d.y - uy * d.length
 
             context.beginPath()
-            context.strokeStyle = hexToRgba(rainColor, drawOpacity)
-            context.lineWidth = 1.5 // Slightly thicker for realism
+            context.strokeStyle = rainColor
+            context.lineWidth = 1
             context.moveTo(tailX, tailY)
             context.lineTo(d.x, d.y)
             context.stroke()
@@ -238,6 +221,7 @@ export default function InteractiveBackground({
       rafRef.current = requestAnimationFrame(drawRain)
     }
 
+    // Cleanup
     return () => {
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current)

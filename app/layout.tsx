@@ -14,11 +14,11 @@ export const metadata: Metadata = {
    description:
     "Undergraduate Computer Science Student at Bina Nusantara",
     openGraph: {
-      url: "https://onyons.vercel.app",
+      url: "https://onyons.vercel.app/",
       title: "Owen Siau - IT Developer Portfolio",
       description: "Undergrad CS student at Binus University",
-      images: [{ url: "/brunbrun.JPG", 
-                width: 4000, height: 6000, alt: "Owen Siau" }]
+      images: [{ url: "https://onyons.vercel.app/goofy-ahh.jpg", 
+                width: 1200, height: 800, alt: "Owen Siau" }]
   }
 }
 

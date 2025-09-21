@@ -55,11 +55,11 @@ export function Header() {
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className="text-muted-foreground hover:text-purple-600 transition-all duration-300 font-medium relative group transform hover:scale-105"
+                  className="text-muted-foreground hover:text-blue-200 transition-all duration-300 font-medium relative group transform hover:scale-105"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {item}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
                 </button>
               ),
             )}

@@ -13,6 +13,12 @@ export const metadata: Metadata = {
    title: { default: "Owen Siau", template: "%s | Owen Siau" },
    description:
     "Undergraduate Computer Science Student at Bina Nusantara",
+    icons: {
+      icon: '/maxwell-cat.png',                       // general fallback
+      shortcut: '/maxwell-cat-48.png',            // Windows/Chrome shortcut
+      apple: '/maxwell-cat-32.png',
+    
+  },
     openGraph: {
       url: "https://onyons.vercel.app/",
       title: "Owen Siau - IT Developer Portfolio",
@@ -29,7 +35,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} antialiased dark`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        </body>
     </html>
   )
 }

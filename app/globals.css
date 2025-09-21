@@ -307,3 +307,22 @@ html {
 .text-dark-purple {
   color: oklch(0.4 0.2 260) !important;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d0d0d02a;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ffffff4d;
+}

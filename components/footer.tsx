@@ -1,12 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { Github, Linkedin, Twitter, Heart } from "lucide-react";
+import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+import { Github, Linkedin, Twitter, Heart } from "lucide-react"
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-background border-t border-border">
+    <footer className="bg-background border-t border-border relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex flex-col items-center space-y-6">
           <div className="flex space-x-6">
@@ -53,5 +53,5 @@ export function Footer() {
         </div>
       </div>
     </footer>
-  );
+  )
 }

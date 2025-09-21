@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Icon } from "@iconify/react"
+import { motion } from "framer-motion";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Icon } from "@iconify/react";
 
 export function Skills() {
   const technologies = [
@@ -16,19 +16,24 @@ export function Skills() {
     { name: "TypeScript", icon: "mdi:language-typescript", color: "#3178C6" },
     { name: "Java", icon: "mdi:language-java", color: "#007396" },
     { name: "Node.js", icon: "mdi:nodejs", color: "#339933" },
-  ]
+  ];
 
   const tools = [
-    { name: "Figma", icon: "/figma-logo.svg", type: "svg"},
-    { name: "Visual Code Studio", icon: "mdi:microsoft-visual-studio-code"},
-    { name: "Axure RP 9", icon: "/axure-rp9.svg", type: "svg"},
-    { name: "GameMaker", icon: "/gamemaker-logo.svg", type: "svg", color: "#ffffff"},
-    { name: "Cursor AI", icon: "/cursor-ai.svg", type: "svg"}
-  ]
+    { name: "Figma", icon: "/figma-logo.svg", type: "svg" },
+    { name: "Visual Code Studio", icon: "mdi:microsoft-visual-studio-code" },
+    { name: "Axure RP 9", icon: "/axure-rp9.svg", type: "svg" },
+    {
+      name: "GameMaker",
+      icon: "/gamemaker-logo.svg",
+      type: "svg",
+      color: "#ffffff",
+    },
+    { name: "Cursor AI", icon: "/cursor-ai.svg", type: "svg" },
+  ];
 
   const createInfiniteArray = (arr: any[], multiplier = 8) => {
-    return Array(multiplier).fill(arr).flat()
-  }
+    return Array(multiplier).fill(arr).flat();
+  };
 
   return (
     <section id="skills" className="py-16 px-4 sm:px-6 lg:px-8">
@@ -45,7 +50,8 @@ export function Skills() {
             Skills & Technologies
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            A comprehensive toolkit built through years of hands-on experience and continuous learning.
+            A comprehensive toolkit built through years of hands-on experience
+            and continuous learning.
           </p>
         </motion.div>
 
@@ -73,9 +79,11 @@ export function Skills() {
                     whileHover={{ scale: 1.05 }}
                   >
                     {/* Custom wrapper instead of Badge */}
-                    <div className="flex items-center gap-3 px-4 py-3 
+                    <div
+                      className="flex items-center gap-3 px-4 py-3 
                                     border border-gray-300 rounded-lg 
-                                    bg-secondary shadow-sm">
+                                    bg-secondary shadow-sm"
+                    >
                       <Icon
                         icon={tech.icon}
                         className="w-7 h-7"
@@ -91,7 +99,7 @@ export function Skills() {
         </motion.div>
 
         {/*Tools Card*/}
-         <motion.div
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
@@ -114,9 +122,11 @@ export function Skills() {
                     whileHover={{ scale: 1.05 }}
                   >
                     {/* Custom wrapper instead of Badge */}
-                    <div className="flex items-center gap-3 px-4 py-3 
+                    <div
+                      className="flex items-center gap-3 px-4 py-3 
                                     border border-gray-300 rounded-lg 
-                                    bg-secondary shadow-sm">
+                                    bg-secondary shadow-sm"
+                    >
                       {tool.type === "img" ? (
                         <img
                           src={tool.icon}
@@ -175,5 +185,5 @@ export function Skills() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

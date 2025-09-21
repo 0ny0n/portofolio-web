@@ -10,10 +10,16 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Owen Siau - IT Developer Portfolio",
-  description:
+   title: { default: "Owen Siau", template: "%s | Owen Siau" },
+   description:
     "Undergraduate Computer Science Student at Bina Nusantara",
-  generator: "v0.app",
+    openGraph: {
+      url: "https://onyons.vercel.app",
+      title: "Owen Siau - IT Developer Portfolio",
+      description: "Undergrad CS student at Binus University",
+      images: [{ url: "/brunbrun.JPG", 
+                width: 4000, height: 6000, alt: "Owen Siau" }]
+  }
 }
 
 export default function RootLayout({

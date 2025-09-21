@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin, Send } from "lucide-react"
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, Phone, MapPin, Send } from "lucide-react";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -15,22 +15,24 @@ export function Contact() {
     email: "",
     subject: "",
     message: "",
-  })
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     // Handle form submission here
-    console.log("Form submitted:", formData)
+    console.log("Form submitted:", formData);
     // Reset form
-    setFormData({ name: "", email: "", subject: "", message: "" })
-  }
+    setFormData({ name: "", email: "", subject: "", message: "" });
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
-    }))
-  }
+    }));
+  };
 
   const contactInfo = [
     {
@@ -51,15 +53,18 @@ export function Contact() {
       value: "San Francisco, CA",
       href: "#",
     },
-  ]
+  ];
 
   return (
     <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8 bg-card">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Get In Touch</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+            Get In Touch
+          </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Ready to start your next project? Let's discuss how I can help bring your ideas to life.
+            Ready to start your next project? Let's discuss how I can help bring
+            your ideas to life.
           </p>
         </div>
 
@@ -76,7 +81,10 @@ export function Contact() {
                   </div>
                   <div>
                     <p className="font-medium text-foreground">{info.label}</p>
-                    <a href={info.href} className="text-muted-foreground hover:text-accent transition-colors">
+                    <a
+                      href={info.href}
+                      className="text-muted-foreground hover:text-accent transition-colors"
+                    >
                       {info.value}
                     </a>
                   </div>
@@ -84,10 +92,14 @@ export function Contact() {
               ))}
 
               <div className="pt-6">
-                <h3 className="font-semibold text-foreground mb-3">Let's Connect</h3>
+                <h3 className="font-semibold text-foreground mb-3">
+                  Let's Connect
+                </h3>
                 <p className="text-muted-foreground">
-                  I'm always interested in hearing about new opportunities and exciting projects. Whether you're looking
-                  for a developer, have a question, or just want to say hi, I'd love to hear from you.
+                  I'm always interested in hearing about new opportunities and
+                  exciting projects. Whether you're looking for a developer,
+                  have a question, or just want to say hi, I'd love to hear from
+                  you.
                 </p>
               </div>
             </CardContent>
@@ -101,7 +113,13 @@ export function Contact() {
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <Input name="name" placeholder="Your Name" value={formData.name} onChange={handleChange} required />
+                    <Input
+                      name="name"
+                      placeholder="Your Name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
                   </div>
                   <div>
                     <Input
@@ -143,5 +161,5 @@ export function Contact() {
         </div>
       </div>
     </section>
-  )
+  );
 }

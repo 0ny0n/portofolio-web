@@ -1,15 +1,15 @@
 // components/InteractiveBackground.tsx
-"use client"
+"use client";
 
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef } from "react";
 
 type Props = {
-  mode?: "stars" | "rain"
-  followCursor?: boolean
-  starColor?: string
-  rainColor?: string
-  maxStars?: number
-}
+  mode?: "stars" | "rain";
+  followCursor?: boolean;
+  starColor?: string;
+  rainColor?: string;
+  maxStars?: number;
+};
 
 export default function InteractiveBackground({
   mode = "stars",
@@ -18,44 +18,47 @@ export default function InteractiveBackground({
   rainColor = "rgba(255,255,255,0.7)",
   maxStars = 220,
 }: Props) {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null)
-  const starsRef = useRef<Star[]>([])
-  const dropsRef = useRef<Drop[]>([])
-  const rafRef = useRef<number>(0)
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const starsRef = useRef<Star[]>([]);
+  const dropsRef = useRef<Drop[]>([]);
+  const rafRef = useRef<number>(0);
 
   useEffect(() => {
     if (typeof window === "undefined") {
-      console.warn("Window is undefined, skipping canvas setup")
-      return
+      console.warn("Window is undefined, skipping canvas setup");
+      return;
     }
 
-    const canvas = canvasRef.current
+    const canvas = canvasRef.current;
     if (!canvas) {
-      console.error("Canvas element is null")
-      return
+      console.error("Canvas element is null");
+      return;
     }
 
-    const ctx = canvas.getContext("2d")
+    const ctx = canvas.getContext("2d");
     if (!ctx) {
-      console.error("Failed to get 2D context")
-      return
+      console.error("Failed to get 2D context");
+      return;
     }
-    const context = ctx as CanvasRenderingContext2D
+    const context = ctx as CanvasRenderingContext2D;
 
-    let width = 0
-    let height = 0
-    const DPR = Math.max(1, window.devicePixelRatio || 1)
+    let width = 0;
+    let height = 0;
+    const DPR = Math.max(1, window.devicePixelRatio || 1);
 
-    const stars = starsRef.current
-    const drops = dropsRef.current
+    const stars = starsRef.current;
+    const drops = dropsRef.current;
 
     function initParticles() {
       try {
         if (mode === "stars") {
-          stars.length = 0
-          const starCount = Math.max(30, Math.min(maxStars, Math.floor((width * height) / 9000)))
+          stars.length = 0;
+          const starCount = Math.max(
+            30,
+            Math.min(maxStars, Math.floor((width * height) / 9000)),
+          );
           for (let i = 0; i < starCount; i++) {
-            const depth = Math.random()
+            const depth = Math.random();
             stars.push({
               baseX: Math.random() * width,
               baseY: Math.random() * height,
@@ -65,173 +68,175 @@ export default function InteractiveBackground({
               depth,
               phase: Math.random() * Math.PI * 2,
               twinkle: Math.random() * 0.05 + 0.01,
-            })
+            });
           }
           stars.forEach((s) => {
-            s.x = s.baseX
-            s.y = s.baseY
-          })
+            s.x = s.baseX;
+            s.y = s.baseY;
+          });
         } else if (mode === "rain") {
-          drops.length = 0
-          const dropCount = Math.floor((width * height) / 4000)
+          drops.length = 0;
+          const dropCount = Math.floor((width * height) / 4000);
           for (let i = 0; i < dropCount; i++) {
             drops.push({
               x: Math.random() * width,
               y: Math.random() * (height + 50) - 50,
               length: 5 + Math.random() * 15,
               speed: 300 + Math.random() * 200,
-            })
+            });
           }
         }
       } catch (error) {
-        console.error("Error initializing particles:", error)
+        console.error("Error initializing particles:", error);
       }
     }
 
     function resize() {
       try {
-        const rect = canvas.getBoundingClientRect()
-        width = rect.width || window.innerWidth
-        height = rect.height || window.innerHeight
-        canvas.width = Math.floor(width * DPR)
-        canvas.height = Math.floor(height * DPR)
-        canvas.style.width = `${width}px`
-        canvas.style.height = `${height}px`
-        context.setTransform(DPR, 0, 0, DPR, 0, 0)
-        initParticles()
+        const rect = canvas.getBoundingClientRect();
+        width = rect.width || window.innerWidth;
+        height = rect.height || window.innerHeight;
+        canvas.width = Math.floor(width * DPR);
+        canvas.height = Math.floor(height * DPR);
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        context.setTransform(DPR, 0, 0, DPR, 0, 0);
+        initParticles();
       } catch (error) {
-        console.error("Error during resize:", error)
+        console.error("Error during resize:", error);
       }
     }
-    resize()
-    window.addEventListener("resize", resize)
+    resize();
+    window.addEventListener("resize", resize);
 
-    const mouse = { x: width / 2, y: height / 2 }
+    const mouse = { x: width / 2, y: height / 2 };
     const handleMove = (e: MouseEvent) => {
       try {
-        const rect = canvas.getBoundingClientRect()
-        mouse.x = e.clientX - rect.left
-        mouse.y = e.clientY - rect.top
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
       } catch (error) {
-        console.error("Error handling mouse move:", error)
+        console.error("Error handling mouse move:", error);
       }
-    }
+    };
     if (followCursor) {
-      window.addEventListener("mousemove", handleMove)
+      window.addEventListener("mousemove", handleMove);
     }
 
-    let last = performance.now()
+    let last = performance.now();
 
     if (mode === "stars") {
       type Star = {
-        baseX: number
-        baseY: number
-        x: number
-        y: number
-        size: number
-        depth: number
-        phase: number
-        twinkle: number
-      }
+        baseX: number;
+        baseY: number;
+        x: number;
+        y: number;
+        size: number;
+        depth: number;
+        phase: number;
+        twinkle: number;
+      };
 
       function drawStars(t: number) {
         try {
-          const dt = (t - last) / (1000 / 60)
-          last = t
-          context.clearRect(0, 0, width, height)
+          const dt = (t - last) / (1000 / 60);
+          last = t;
+          context.clearRect(0, 0, width, height);
 
-          const cx = width / 2
-          const cy = height / 2
+          const cx = width / 2;
+          const cy = height / 2;
 
           for (const s of stars) {
-            const px = followCursor ? (mouse.x - cx) * 0.02 * (1 - s.depth) : 0
-            const py = followCursor ? (mouse.y - cy) * 0.02 * (1 - s.depth) : 0
-            const tx = s.baseX + px
-            const ty = s.baseY + py
+            const px = followCursor ? (mouse.x - cx) * 0.02 * (1 - s.depth) : 0;
+            const py = followCursor ? (mouse.y - cy) * 0.02 * (1 - s.depth) : 0;
+            const tx = s.baseX + px;
+            const ty = s.baseY + py;
 
-            s.x += (tx - s.x) * 0.06 * dt
-            s.y += (ty - s.y) * 0.06 * dt
+            s.x += (tx - s.x) * 0.06 * dt;
+            s.y += (ty - s.y) * 0.06 * dt;
 
-            s.phase += s.twinkle * dt
-            const alpha = 0.4 + 0.6 * Math.sin(s.phase)
+            s.phase += s.twinkle * dt;
+            const alpha = 0.4 + 0.6 * Math.sin(s.phase);
 
-            context.beginPath()
-            context.fillStyle = hexToRgba(starColor, alpha)
-            context.arc(s.x, s.y, s.size, 0, Math.PI * 2)
-            context.fill()
+            context.beginPath();
+            context.fillStyle = hexToRgba(starColor, alpha);
+            context.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+            context.fill();
           }
 
-          rafRef.current = requestAnimationFrame(drawStars)
+          rafRef.current = requestAnimationFrame(drawStars);
         } catch (error) {
-          console.error("Error in drawStars:", error)
+          console.error("Error in drawStars:", error);
         }
       }
 
-      rafRef.current = requestAnimationFrame(drawStars)
+      rafRef.current = requestAnimationFrame(drawStars);
     } else if (mode === "rain") {
       type Drop = {
-        x: number
-        y: number
-        length: number
-        speed: number
-      }
+        x: number;
+        y: number;
+        length: number;
+        speed: number;
+      };
 
       function drawRain(t: number) {
         try {
-          const dt_sec = (t - last) / 1000
-          last = t
-          context.clearRect(0, 0, width, height)
+          const dt_sec = (t - last) / 1000;
+          last = t;
+          context.clearRect(0, 0, width, height);
 
-          const cx = width / 2
-          const angle = followCursor ? (mouse.x - cx) / (width / 2) * (Math.PI / 12) : 0
+          const cx = width / 2;
+          const angle = followCursor
+            ? ((mouse.x - cx) / (width / 2)) * (Math.PI / 12)
+            : 0;
 
           for (const d of drops) {
-            const vy = d.speed * dt_sec
-            const vx = vy * Math.tan(angle)
+            const vy = d.speed * dt_sec;
+            const vx = vy * Math.tan(angle);
 
-            d.x += vx
-            d.y += vy
+            d.x += vx;
+            d.y += vy;
 
-            d.x = ((d.x % width) + width) % width
+            d.x = ((d.x % width) + width) % width;
             if (d.y > height + d.length) {
-              d.y -= height + d.length * 2
+              d.y -= height + d.length * 2;
             }
 
-            const total_speed = Math.sqrt(vx * vx + vy * vy) / dt_sec
-            const ux = total_speed ? (vx / dt_sec) / total_speed : 0
-            const uy = total_speed ? (vy / dt_sec) / total_speed : 1
+            const total_speed = Math.sqrt(vx * vx + vy * vy) / dt_sec;
+            const ux = total_speed ? vx / dt_sec / total_speed : 0;
+            const uy = total_speed ? vy / dt_sec / total_speed : 1;
 
-            const tailX = d.x - ux * d.length
-            const tailY = d.y - uy * d.length
+            const tailX = d.x - ux * d.length;
+            const tailY = d.y - uy * d.length;
 
-            context.beginPath()
-            context.strokeStyle = rainColor
-            context.lineWidth = 1
-            context.moveTo(tailX, tailY)
-            context.lineTo(d.x, d.y)
-            context.stroke()
+            context.beginPath();
+            context.strokeStyle = rainColor;
+            context.lineWidth = 1;
+            context.moveTo(tailX, tailY);
+            context.lineTo(d.x, d.y);
+            context.stroke();
           }
 
-          rafRef.current = requestAnimationFrame(drawRain)
+          rafRef.current = requestAnimationFrame(drawRain);
         } catch (error) {
-          console.error("Error in drawRain:", error)
+          console.error("Error in drawRain:", error);
         }
       }
 
-      rafRef.current = requestAnimationFrame(drawRain)
+      rafRef.current = requestAnimationFrame(drawRain);
     }
 
     // Cleanup
     return () => {
       if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current)
+        cancelAnimationFrame(rafRef.current);
       }
-      window.removeEventListener("resize", resize)
+      window.removeEventListener("resize", resize);
       if (followCursor) {
-        window.removeEventListener("mousemove", handleMove)
+        window.removeEventListener("mousemove", handleMove);
       }
-    }
-  }, [mode, followCursor, starColor, rainColor, maxStars])
+    };
+  }, [mode, followCursor, starColor, rainColor, maxStars]);
 
   return (
     <canvas
@@ -240,18 +245,27 @@ export default function InteractiveBackground({
       style={{ background: "transparent" }}
       aria-hidden="true"
     />
-  )
+  );
 }
 
 function hexToRgba(hex: string, alpha = 1) {
   try {
-    const hx = hex.replace("#", "")
-    const r = parseInt(hx.length === 3 ? hx[0] + hx[0] : hx.substring(0, 2), 16)
-    const g = parseInt(hx.length === 3 ? hx[1] + hx[1] : hx.substring(2, 4), 16)
-    const b = parseInt(hx.length === 3 ? hx[2] + hx[2] : hx.substring(4, 6), 16)
-    return `rgba(${r},${g},${b},${alpha})`
+    const hx = hex.replace("#", "");
+    const r = parseInt(
+      hx.length === 3 ? hx[0] + hx[0] : hx.substring(0, 2),
+      16,
+    );
+    const g = parseInt(
+      hx.length === 3 ? hx[1] + hx[1] : hx.substring(2, 4),
+      16,
+    );
+    const b = parseInt(
+      hx.length === 3 ? hx[2] + hx[2] : hx.substring(4, 6),
+      16,
+    );
+    return `rgba(${r},${g},${b},${alpha})`;
   } catch (error) {
-    console.error("Error in hexToRgba:", error)
-    return `rgba(255,255,255,${alpha})`
+    console.error("Error in hexToRgba:", error);
+    return `rgba(255,255,255,${alpha})`;
   }
 }

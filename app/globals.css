@@ -216,7 +216,9 @@ html {
 }
 
 .hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .hover-lift:hover {
@@ -279,7 +281,13 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, oklch(0.08 0 0) 0%, transparent 10%, transparent 90%, oklch(0.08 0 0) 100%);
+  background: linear-gradient(
+    90deg,
+    oklch(0.08 0 0) 0%,
+    transparent 10%,
+    transparent 90%,
+    oklch(0.08 0 0) 100%
+  );
   pointer-events: none;
   z-index: 1;
 }

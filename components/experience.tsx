@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Calendar, MapPin } from "lucide-react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Calendar, MapPin } from "lucide-react";
 
 export function Experience() {
   const experiences = [
@@ -46,15 +46,18 @@ export function Experience() {
       ],
       technologies: ["JavaScript", "PHP", "MySQL", "WordPress", "Git"],
     },
-  ]
+  ];
 
   return (
     <section id="experience" className="py-16 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto max-w-4xl">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">Work Experience</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
+            Work Experience
+          </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            My professional journey and the impact I've made at each organization.
+            My professional journey and the impact I've made at each
+            organization.
           </p>
         </div>
 
@@ -64,8 +67,12 @@ export function Experience() {
               <CardHeader>
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
                   <div>
-                    <CardTitle className="text-xl text-foreground">{exp.title}</CardTitle>
-                    <p className="text-lg font-semibold text-accent">{exp.company}</p>
+                    <CardTitle className="text-xl text-foreground">
+                      {exp.title}
+                    </CardTitle>
+                    <p className="text-lg font-semibold text-accent">
+                      {exp.company}
+                    </p>
                   </div>
                   <div className="flex flex-col sm:items-end gap-1">
                     <div className="flex items-center text-sm text-muted-foreground">
@@ -83,7 +90,9 @@ export function Experience() {
                 <p className="text-muted-foreground">{exp.description}</p>
 
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">Key Achievements:</h4>
+                  <h4 className="font-semibold text-foreground mb-2">
+                    Key Achievements:
+                  </h4>
                   <ul className="list-disc list-inside space-y-1 text-muted-foreground">
                     {exp.achievements.map((achievement, achIndex) => (
                       <li key={achIndex}>{achievement}</li>
@@ -92,10 +101,16 @@ export function Experience() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-foreground mb-2">Technologies:</h4>
+                  <h4 className="font-semibold text-foreground mb-2">
+                    Technologies:
+                  </h4>
                   <div className="flex flex-wrap gap-2">
                     {exp.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="secondary" className="text-xs">
+                      <Badge
+                        key={techIndex}
+                        variant="secondary"
+                        className="text-xs"
+                      >
                         {tech}
                       </Badge>
                     ))}
@@ -107,5 +122,5 @@ export function Experience() {
         </div>
       </div>
     </section>
-  )
+  );
 }

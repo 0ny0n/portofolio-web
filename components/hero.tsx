@@ -1,25 +1,25 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Github, Linkedin, Mail, Download, ChevronDown } from "lucide-react"
-import InteractiveBackground from "./interactiveBackground"
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Github, Linkedin, Mail, Download, ChevronDown } from "lucide-react";
+import InteractiveBackground from "./interactiveBackground";
 
 export function Hero() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true)
-  }, [])
+    setIsVisible(true);
+  }, []);
 
   const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
-  }
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const scrollToAbout = () => {
-    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
-  }
+    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 bg-background relative overflow-hidden">
@@ -39,7 +39,8 @@ export function Hero() {
             transition={{ duration: 1, delay: 0.2 }}
             className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-8 leading-none tracking-tight"
           >
-            Hi, I'm <span className="text-rgb-gradient font-extrabold">Owen Siau</span>
+            Hi, I'm{" "}
+            <span className="text-rgb-gradient font-extrabold">Owen Siau</span>
           </motion.h1>
 
           <motion.p
@@ -57,8 +58,8 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-4xl mx-auto mb-12 leading-relaxed font-light"
           >
-            Exploring Computer Science at Bina Nusantara University, passionate about UI/UX, web
-            development, and creating games.
+            Exploring Computer Science at Bina Nusantara University, passionate
+            about UI/UX, web development, and creating games.
           </motion.p>
         </motion.div>
 
@@ -83,12 +84,12 @@ export function Hero() {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
               onClick={() => {
-                const link = document.createElement("a")
-                link.href = "/owen-siau-CV.pdf"
-                link.download = "OwenSiau-CV.pdf"
-                document.body.appendChild(link)
-                link.click()
-                document.body.removeChild(link)
+                const link = document.createElement("a");
+                link.href = "/owen-siau-CV.pdf";
+                link.download = "OwenSiau-CV.pdf";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
               }}
               variant="outline"
               size="lg"
@@ -107,15 +108,35 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 1.0 }}
           className="flex justify-center space-x-8 mb-16"
         >
-          <motion.div whileHover={{ scale: 1.1, y: -5 }} whileTap={{ scale: 0.9 }}>
-            <Button variant="ghost" size="lg" asChild className="social-icon-hover p-4">
-              <a href="https://github.com/0ny0n" target="_blank" rel="noopener noreferrer">
+          <motion.div
+            whileHover={{ scale: 1.1, y: -5 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <Button
+              variant="ghost"
+              size="lg"
+              asChild
+              className="social-icon-hover p-4"
+            >
+              <a
+                href="https://github.com/0ny0n"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Github className="h-7 w-7 text-muted-foreground hover:text-purple-600 transition-colors duration-300" />
               </a>
             </Button>
           </motion.div>
-          <motion.div whileHover={{ scale: 1.1, y: -5 }} whileTap={{ scale: 0.9 }}>
-            <Button variant="ghost" size="lg" asChild className="social-icon-hover p-4">
+          <motion.div
+            whileHover={{ scale: 1.1, y: -5 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <Button
+              variant="ghost"
+              size="lg"
+              asChild
+              className="social-icon-hover p-4"
+            >
               <a
                 href="https://www.linkedin.com/in/owen-siau-2a4464289/"
                 target="_blank"
@@ -136,14 +157,23 @@ export function Hero() {
         >
           <motion.div
             animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+            transition={{
+              duration: 2,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: "easeInOut",
+            }}
           >
-            <Button variant="ghost" size="sm" onClick={scrollToAbout} className="dropdown-hover">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={scrollToAbout}
+              className="dropdown-hover"
+            >
               <ChevronDown className="h-6 w-6 text-muted-foreground hover:text-purple-600 transition-colors duration-300" />
             </Button>
           </motion.div>
         </motion.div>
       </div>
     </section>
-  )
+  );
 }

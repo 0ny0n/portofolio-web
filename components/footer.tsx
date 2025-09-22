@@ -46,8 +46,8 @@ export function Footer() {
               © {currentYear} Onyon Cutter. All rights reserved.
             </p>
             <p className="text-xs text-muted-foreground flex items-center justify-center">
-              Made with <Heart className="h-3 w-3 mx-1 text-red-500" /> using
-              Next.js & Tailwind CSS
+              Made with <Heart className="h-3 w-3 mx-1 text-red-500" /> 
+              using Next.js & Tailwind CSS
             </p>
           </div>
         </div>

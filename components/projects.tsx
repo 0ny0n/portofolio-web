@@ -1,7 +1,10 @@
+"use client"
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ExternalLink, Github } from "lucide-react"
+import { useEffect, useRef } from "react"
 
 export function Projects() {
   const projects = [
@@ -25,8 +28,8 @@ export function Projects() {
     },
     {
       title: "Kings Barbershop Website",
-      description: "Infrastructure as Code solution for automated deployment and scaling of microservices on AWS.",
-      image: "/cloud-infrastructure-diagram.png",
+      description: "A modern, responsive web application that combines barbershop services with a coffee lounge concept, built with clean UI design and smooth navigation to enhance user experience.",
+      image: "/kingsbarbershop.png",
       technologies: ["React", "Vite", "JavaScript XML"],
       liveUrl: "https://kingsbarber-coffee.vercel.app/",
       githubUrl: "#",
@@ -34,8 +37,8 @@ export function Projects() {
     {
       title: "Dishcovery Mobile App",
       description:
-        "Interactive dashboard for visualizing business metrics with real-time data processing and custom reporting.",
-      image: "/analytics-dashboard.png",
+        "Dishcovery is a cross-platform mobile app built with React Native and TypeScript, leveraging Cursor AI to provide dynamic menu and recipe search with a responsive and scalable design.",
+      image: "/dishcovery-preview.png",
       technologies: ["React Native", "Cursor AI", "TypeScript", "JavaScript"],
       liveUrl: "#",
       githubUrl: "#",

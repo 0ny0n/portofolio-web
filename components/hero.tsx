@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Mail, Download, ChevronDown } from "lucide-react";
+import { Github, Linkedin, Mail, PhoneCall, Download, ChevronDown } from "lucide-react";
 import InteractiveBackground from "./interactiveBackground";
 
 export function Hero() {
@@ -72,11 +72,17 @@ export function Hero() {
         >
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button
-              onClick={scrollToContact}
+              onClick={() => {
+                const link = document.createElement("a");
+                link.href = "https://api.whatsapp.com/send/?phone=6287839119783&text=Hello!%20I%20saw%20your%20Portofolio%20Website!&type=phone_number&app_absent=0";
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
               size="lg"
               className="cursor-pointer w-full sm:w-auto text-lg px-10 py-4 bg-accent hover:bg-secondary text-accent-foreground hover:text-secondary-foreground transition-all duration-300 hover-lift"
             >
-              <Mail className="mr-3 h-5 w-5" />
+              <PhoneCall className="mr-3 h-5 w-5" />
               Get In Touch
             </Button>
           </motion.div>

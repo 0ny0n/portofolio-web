@@ -3,7 +3,14 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Mail, PhoneCall, Download, ChevronDown } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  PhoneCall,
+  Download,
+  ChevronDown,
+} from "lucide-react";
 import InteractiveBackground from "./interactiveBackground";
 
 export function Hero() {
@@ -22,10 +29,7 @@ export function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 bg-background relative overflow-hidden">
-      {/* Interactive background */}
-      <InteractiveBackground mode="rain" followCursor={true} />
-
+    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16 relative overflow-hidden">
       <div className="container mx-auto max-w-7xl text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -74,7 +78,8 @@ export function Hero() {
             <Button
               onClick={() => {
                 const link = document.createElement("a");
-                link.href = "https://api.whatsapp.com/send/?phone=6287839119783&text=Hello!%20I%20saw%20your%20Portofolio%20Website!&type=phone_number&app_absent=0";
+                link.href =
+                  "https://api.whatsapp.com/send/?phone=6287839119783&text=Hello!%20I%20saw%20your%20Portofolio%20Website!&type=phone_number&app_absent=0";
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
@@ -99,7 +104,7 @@ export function Hero() {
               }}
               variant="outline"
               size="lg"
-              className="cursor-pointer w-full sm:w-auto text-lg px-10 py-4 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white transition-all duration-300 hover-lift bg-transparent"
+              className="cursor-pointer w-full sm:w-auto text-lg px-10 py-4 border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white transition-all duration-300 hover-lift backdrop-blur-lg "
             >
               <Download className="mr-3 h-5 w-5" />
               Download CV

@@ -5,7 +5,14 @@ import { motion } from "framer-motion";
 
 export function About() {
   return (
-    <section id="about" className="py-16 px-4 sm:px-6 lg:px-8 bg-card">
+    <section
+      id="about"
+      className="py-16 px-4 sm:px-6 lg:px-8 bg-card"
+      style={{
+        background:
+          "linear-gradient(to bottom, oklch(0.145 0 0 / 0) 0, oklch(0.145 0 0) 100px);",
+      }}
+    >
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12">
           <motion.h2

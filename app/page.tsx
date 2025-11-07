@@ -8,11 +8,14 @@ import { Experience } from "@/components/experience";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
 
+import InteractiveBackground from "@/components/interactiveBackground";
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Header />
       <main>
+        <InteractiveBackground followCursor={true} style={{ zIndex: -1 }} />
         <Hero />
         <About />
         <Skills />

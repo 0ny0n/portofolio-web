@@ -33,15 +33,21 @@ export function Header() {
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-lg border-b border-border shadow-sm"
-          : "bg-background/80 backdrop-blur-md border-b border-border/50"
+          ? "bg-background/95 backdrop-blur-lg border-b border-border/50 shadow-sm"
+          : "border-b border-transparent"
+        // : "bg-background/80 backdrop-blur-md border-b border-border/50"
       }`}
+      style={{
+        background: !isScrolled
+          ? "linear-gradient(to top, oklch(0.145 0 0 / 0), oklch(0.145 0 0))"
+          : "oklch(0.145 0 0)",
+      }}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <button
             onClick={scrollToTop}
-            className="font-bold text-xl text-foreground hover:text-purple-600 transition-all duration-300 transform hover:scale-105 animate-slide-in-left"
+            className="cursor-pointer font-bold text-xl text-foreground hover:text-purple-600 transition-all duration-300 transform hover:scale-105 animate-slide-in-left"
           >
             Owen Siau
           </button>
@@ -55,7 +61,7 @@ export function Header() {
                 <button
                   key={item}
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className="text-muted-foreground hover:text-blue-200 transition-all duration-300 font-medium relative group transform hover:scale-105"
+                  className="text-muted-foreground hover:text-blue-200 transition-all duration-300 font-medium relative group transform hover:scale-105 cursor-pointer"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {item}

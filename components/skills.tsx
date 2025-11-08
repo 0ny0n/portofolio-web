@@ -60,7 +60,7 @@ export function Skills() {
         >
           <Card className="hover-lift max-w-4xl mx-auto">
             <CardHeader>
-              <CardTitle className="text-center">Technologies</CardTitle>
+              <CardTitle className="text-center mt-6">Technologies</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-4 justify-center">
@@ -103,7 +103,7 @@ export function Skills() {
         >
           <Card className="hover-lift max-w-4xl mx-auto">
             <CardHeader>
-              <CardTitle className="text-center">Tools</CardTitle>
+              <CardTitle className="text-center mt-6">Tools</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="flex flex-wrap gap-4 justify-center">
